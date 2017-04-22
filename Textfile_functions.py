@@ -1,9 +1,3 @@
-
-'''
-
-
-'''
-
 def file_to_list_strings(FileName):
 
     list_lines = []
@@ -86,7 +80,7 @@ def list_words_to_dic_letters(list_words):
 
 def print_dic_words(dic_words):
 
-    sys.stdout = open('myfile.txt', 'w') # what does this do?
+
 
     list_sorted_keys = dic_words.keys()
 
@@ -98,16 +92,7 @@ def print_dic_words(dic_words):
 
         print "%20s     |    %5s"  %(word, dic_words[word] )
 
-    sys.stdout.close()
 
-
-'''
-    with open('myfile.txt') as f:
-        for line in f:
-            print line.strip()
-
-    sys.stdout.close()
-'''
 
 def find_palindromes(dic_words):
 
@@ -124,27 +109,27 @@ def find_palindromes(dic_words):
 
             string = letter + string
 
-        print string
 
         if string == key and len(string) > 2:
+
             dic_palindromes[key] = 1
 
     return dic_palindromes
 
 
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
 
-    list_lines = file_to_list_strings("PridePrej.txt")
+list_lines = file_to_list_strings("PridePrej.txt")
 
-    list_words = list_strings_to_list_words(list_lines)
+list_words = list_strings_to_list_words(list_lines)
 
-    dic_words = list_words_to_dic_words(list_words)
+dic_words = list_words_to_dic_words(list_words)
 
-    dic_letters = list_words_to_dic_letters(list_words)
+dic_letters = list_words_to_dic_letters(list_words)
 
-    dic_palindromes = find_palindromes(dic_words)
+dic_palindromes = find_palindromes(dic_words)
 
-    # print dic_palindromes
+dic_palindromes
 
-    print_dic_words(dic_words)
+# print_dic_words(dic_words)
