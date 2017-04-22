@@ -6,11 +6,19 @@ give options as to whether the user wants to print the dictionary of words or th
 
 pretty print the results
 
-remove junk from the tect file.
+remove junk from the text file.
 
 '''
 import sys
 
+'''
+import shutil
+
+
+def move(src, dest):
+
+    shutil.move(src, dest)
+'''
 
 
 def file_to_list_strings(FileName):
@@ -25,9 +33,7 @@ def file_to_list_strings(FileName):
             s2 = s2.lower()
             list_lines.append(s2)
 
-
-
-    return list_lines
+        return list_lines
 
 
 def list_strings_to_list_words(list_strings):
@@ -85,8 +91,11 @@ def list_words_to_dic_letters(list_words):
         for letter in word:
 
             if letter in dic_letters:
+
                 dic_letters[letter] += 1
+
             else:
+
                 dic_letters[letter] = 1
 
     return dic_letters
@@ -96,7 +105,7 @@ def list_words_to_dic_letters(list_words):
 
 def print_dic_words(dic_words):
 
-    sys.stdout = open('file.txt', 'w')
+    sys.stdout = open('myfile.txt', 'w') # what does this do?
 
     list_sorted_keys = dic_words.keys()
 
@@ -108,15 +117,44 @@ def print_dic_words(dic_words):
 
         print "%20s     |    %5s"  %(word, dic_words[word] )
 
+    #sys.stdout.close()
+
+
+
+    with open('myfile.txt') as f:
+        for line in f:
+            print line.strip()
+
     sys.stdout.close()
+
+
+def find_palindromes(dic_words):
+
+    dic_palindromes = {}
+
+    list_keys = dic_words.keys()
+    list_keys.sort()
+
+    for key in list_keys:
+        string = ''
+
+
+        for letter in key:
+
+            string = letter + string
+
+        print string
+
+        if string == key and len(string) > 2:
+            dic_palindromes[key] = 1
+
+    return dic_palindromes
 
 
 
 if __name__ == "__main__":
 
-    list_lines = file_to_list_strings("slide-PridePrej.txt")
-
-    #print List_lines
+    list_lines = file_to_list_strings("PridePrej.txt")
 
     list_words = list_strings_to_list_words(list_lines)
 
@@ -124,4 +162,8 @@ if __name__ == "__main__":
 
     dic_letters = list_words_to_dic_letters(list_words)
 
-    print_dic_words(dic_words)
+    dic_palindromes = find_palindromes(dic_words)
+
+    print dic_palindromes
+
+    #print_dic_words(dic_words)
