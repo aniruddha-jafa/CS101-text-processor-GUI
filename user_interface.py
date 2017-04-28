@@ -18,7 +18,7 @@ user_file_name.pack()
 
 def display_palindromes(dic_palindromes):
 
-    print dic_palindromes
+    # print dic_palindromes
 
     list_keys = dic_palindromes.keys()
     list_keys.sort
@@ -39,7 +39,6 @@ def display_palindromes(dic_palindromes):
     listbox.pack(side ="left" , fill = tkinter.BOTH)
     scrollbar.config(command = listbox.yview)
     palindrome_window.mainloop()
-
 
 
 def display_all_words(dic_words):
@@ -68,6 +67,34 @@ def display_all_words(dic_words):
     all_words_window.mainloop()
 
 
+current_word = ""
+def word_search(user_word_entry, dic_words, list_lines, actual_file):
+
+    current_word = user_word_entry.get()
+    print current_word
+
+    key = current_word.lower()
+    print key
+
+    word_search_window = tkinter.Tk()
+    word_search_window.title("Word search results")
+    word_search_window.geometry("300x300")
+
+    if key in dic_words:
+         value = str(dic_words[key])
+         search_results =  "The word %s appears in the textfile %s a total of %s times"  %(key, actual_file, value)
+         word_search_results = tkinter.Label (word_search_window, text = search_results)
+         word_search_results.pack()
+
+
+    else:
+         search_results = "The word %s does not appear in the textfile %s" %(key, actual_file)
+         word_search_results = tkinter.Label(word_search_window, text = search_results)
+         word_search_results.pack()
+
+
+
+
 
 actual_file = ""
 
@@ -94,12 +121,21 @@ def assign_file():
 
     palindrome_button = tkinter.Button( new_window, text ="Palindromes", command = lambda: display_palindromes(dic_palindromes) )
     # Note, using a lambda otherwise just command = display_palindromes(dic_palindromes) just calls the function immediately
-    palindrome_button.pack(pady = 60)
+    palindrome_button.pack(pady = 10)
 
 
     display_all_words_button = tkinter.Button( new_window, text = "Display all words", command = lambda: display_all_words(dic_words) )
     display_all_words_button.pack(pady=10)
 
+
+    prompt_user = tkinter.Label(new_window, text= "Enter word to search: ")
+    prompt_user.pack()
+
+    user_word_entry = tkinter.Entry(new_window)
+    user_word_entry.pack()
+
+    word_search_button = tkinter.Button (new_window, text = "Search", command = lambda: word_search(user_word_entry, dic_words, list_lines, actual_file) )
+    word_search_button.pack()
 
     new_window.mainloop()
 
