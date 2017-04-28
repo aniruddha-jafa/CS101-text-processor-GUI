@@ -6,7 +6,6 @@ This is the file that anyone exploring this project should run.
 import Tkinter as tkinter
 from Textfile_functions import *
 
-
 mywindow = tkinter.Tk()
 mywindow.title("Functions for text files")
 mywindow.geometry("400x400")
@@ -89,18 +88,18 @@ def assign_file():
     dic_palindromes = find_palindromes(dic_words)
 
     new_window = tkinter.Tk()
-    new_window.title("Hello")
+    new_window.title("Functions")
     new_window.geometry("300x300")
 
 
     palindrome_button = tkinter.Button( new_window, text ="Palindromes", command = lambda: display_palindromes(dic_palindromes) )
     # Note, using a lambda otherwise just command = display_palindromes(dic_palindromes) just calls the function immediately
-
     palindrome_button.pack(pady = 60)
 
 
     display_all_words_button = tkinter.Button( new_window, text = "Display all words", command = lambda: display_all_words(dic_words) )
     display_all_words_button.pack(pady=10)
+
 
     new_window.mainloop()
 
