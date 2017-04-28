@@ -1,3 +1,14 @@
+"""
+All the functions needed for turning a textfile into usable forms (i.e. lists dictionaries)
+are defined here
+
+
+
+"""
+# converts the text file into a list of strings line-by-line.
+# Each line is turned into one giant string. Special characters are stripped off.
+# All words in a line are converted to lowercase.
+
 def file_to_list_strings(FileName):
 
     list_lines = []
@@ -12,14 +23,13 @@ def file_to_list_strings(FileName):
 
         return list_lines
 
-
+# each line is broken down into its component words.
+#  We obtain a list that contains all words the appear in the original text file
 def list_strings_to_list_words(list_strings):
 
     string_words = ''
 
     alpha = 'abcdefghijklmnopqrstuvwxyz'
-
-
 
     for line in list_strings:
 
@@ -39,7 +49,7 @@ def list_strings_to_list_words(list_strings):
 
     return string_words.split()
 
-
+# We create a dictionary to keep track of the words that appear, and how many times they appear.
 def list_words_to_dic_words(list_words):
 
     dic_words = {}
@@ -93,6 +103,8 @@ def print_dic_words(dic_words):
         print "%20s     |    %5s"  %(word, dic_words[word] )
 
 
+# we find all possible palindromes from the dictionary of words.
+# minimum lenght to be considered a palindrome  is 3.
 
 def find_palindromes(dic_words):
 
@@ -102,21 +114,21 @@ def find_palindromes(dic_words):
     list_keys.sort()
 
     for key in list_keys:
-        string = ''
+        reverse_string = ''
 
 
         for letter in key:
 
-            string = letter + string
+            reverse_string = letter + reverse_string
 
-
-        if string == key and len(string) > 2:
+        # the new string we obtain must be identical to the orginal
+        if reverse_string == key and len(reverse_string) > 2:
 
             dic_palindromes[key] = 1
 
     return dic_palindromes
 
-
+'''
 
 #if __name__ == "__main__":
 
@@ -131,5 +143,5 @@ dic_letters = list_words_to_dic_letters(list_words)
 dic_palindromes = find_palindromes(dic_words)
 
 dic_palindromes
-
+'''
 # print_dic_words(dic_words)
