@@ -71,7 +71,7 @@ def display_all_words(dic_words):
 # defining the variable "current word" outside the function word_search
 current_word = ""
 
-def word_search(user_word_entry, dic_words, list_lines, actual_file):
+def word_search(user_word_entry, dic_words, actual_file):
 
     current_word = user_word_entry.get()
     key = current_word.lower()
@@ -126,7 +126,7 @@ def assign_file():
 
     dic_palindromes = find_palindromes(dic_words)
 
-    
+
     new_window = tkinter.Tk()
     new_window.title("Functions for text files")
     new_window.geometry("300x300")
@@ -145,7 +145,7 @@ def assign_file():
     user_word_entry = tkinter.Entry(new_window)
     user_word_entry.pack()
 
-    word_search_button = tkinter.Button (new_window, text = "Search", command = lambda: word_search(user_word_entry, dic_words, list_lines, actual_file) )
+    word_search_button = tkinter.Button (new_window, text = "Search", command = lambda: word_search(user_word_entry, dic_words, actual_file) )
     word_search_button.pack()
 
     new_window.mainloop()
