@@ -91,17 +91,7 @@ def word_search(user_word_entry, dic_words, actual_file):
          word_search_results = tkinter.Label (word_search_window, text = search_results)
          word_search_results.pack()
 
-         line_index = 0
-
-         for line in list_lines:
-
-             if key in line:
-                 line_number = str(line_index)
-                 print "The word %s appears in line %s" %(key, line_number)
-         line_index += 1
-
-
-
+        
     else:
          search_results = "The word %s does not appear in the textfile %s" %(key, actual_file)
          word_search_results = tkinter.Label(word_search_window, text = search_results)
