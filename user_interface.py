@@ -6,6 +6,7 @@ This is the file that anyone exploring this project should run.
 import Tkinter as tkinter
 from Textfile_functions import *
 
+#creating a new window, where the user can enter the name of the file on which the function will be performed
 mywindow = tkinter.Tk()
 mywindow.title("Welcome")
 mywindow.geometry("400x400")
@@ -13,8 +14,10 @@ mywindow.geometry("400x400")
 prompt_user = tkinter.Label(mywindow, text= "Enter file name: ")
 prompt_user.pack()
 
+# Entry widget for user to enter a file name
 user_file_name = tkinter.Entry(mywindow)
 user_file_name.pack()
+
 
 def display_palindromes(dic_palindromes):
 
@@ -25,9 +28,11 @@ def display_palindromes(dic_palindromes):
     palindrome_window.title("Palindromes")
     palindrome_window.geometry("300x300")
 
+    #putting a scrollbar on the right side, making it fill up the y-axis
     scrollbar = tkinter.Scrollbar(palindrome_window)
     scrollbar.pack(side = "right", fill = tkinter.Y)
 
+    # using the widget listbox, since it allows for easy implimentation of the scrollbar functionality
     listbox = tkinter.Listbox(palindrome_window, borderwidth = 0, yscrollcommand = scrollbar.set)
 
     for key in list_keys:
@@ -121,7 +126,7 @@ def assign_file():
 
     dic_palindromes = find_palindromes(dic_words)
 
-
+    
     new_window = tkinter.Tk()
     new_window.title("Functions for text files")
     new_window.geometry("300x300")
