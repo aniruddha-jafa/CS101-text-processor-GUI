@@ -35,6 +35,7 @@ def display_palindromes(dic_palindromes):
 
     listbox.pack(side ="left" , fill = tkinter.BOTH)
     scrollbar.config(command = listbox.yview)
+
     palindrome_window.mainloop()
 
 def display_all_words(dic_words):
@@ -62,20 +63,26 @@ def display_all_words(dic_words):
 
     all_words_window.mainloop()
 
-
+# defining the variable "current word" outside the function word_search
 current_word = ""
+
 def word_search(user_word_entry, dic_words, list_lines, actual_file):
 
     current_word = user_word_entry.get()
     key = current_word.lower()
 
+    #creating a wndow to display the wor search results
     word_search_window = tkinter.Tk()
     word_search_window.title("Word search results")
     word_search_window.geometry("300x300")
 
+    # if the word inputted by the user (represented by the variable "key") is in the dictionary of words,
+    # we find how many times it appears (represented the variable "count")
     if key in dic_words:
-         value = str(dic_words[key])
-         search_results =  "The word %s appears in the textfile %s a total of %s times"  %(key, actual_file, value)
+         count = str(dic_words[key])
+         search_results =  "The word %s appears in the textfile %s a total of %s times"  %(key, actual_file, count)
+
+         # search results displayed using the label widget.
          word_search_results = tkinter.Label (word_search_window, text = search_results)
          word_search_results.pack()
 
@@ -96,15 +103,14 @@ def word_search(user_word_entry, dic_words, list_lines, actual_file):
          word_search_results.pack()
 
 
-
+# defining the variable "actual file" outside the funtion assign_file.
 actual_file = ""
 
 def assign_file():
 
     actual_file = user_file_name.get()
 
-    print "The current file is: " + str(actual_file)
-
+    # the following functions are performed on on the textfile specified by the user:
     list_lines = file_to_list_strings(actual_file)
 
     list_words = list_strings_to_list_words(list_lines)
@@ -115,9 +121,11 @@ def assign_file():
 
     dic_palindromes = find_palindromes(dic_words)
 
+
     new_window = tkinter.Tk()
     new_window.title("Functions for text files")
     new_window.geometry("300x300")
+
 
     palindrome_button = tkinter.Button( new_window, text ="Palindromes", command = lambda: display_palindromes(dic_palindromes) )
     # Note, using a lambda otherwise just command = display_palindromes(dic_palindromes) just calls the function immediately
