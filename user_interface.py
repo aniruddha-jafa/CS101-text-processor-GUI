@@ -91,7 +91,7 @@ def word_search(user_word_entry, dic_words, actual_file):
          word_search_results = tkinter.Label (word_search_window, text = search_results)
          word_search_results.pack()
 
-        
+
     else:
          search_results = "The word %s does not appear in the textfile %s" %(key, actual_file)
          word_search_results = tkinter.Label(word_search_window, text = search_results)
@@ -129,7 +129,7 @@ def assign_file():
     display_all_words_button = tkinter.Button( new_window, text = "Display all words", command = lambda: display_all_words(dic_words) )
     display_all_words_button.pack(pady=10)
 
-    prompt_user = tkinter.Label(new_window, text= "Enter word to search: ")
+    prompt_user = tkinter.Label(new_window, text= "Enter word to search for: ")
     prompt_user.pack()
 
     user_word_entry = tkinter.Entry(new_window)
