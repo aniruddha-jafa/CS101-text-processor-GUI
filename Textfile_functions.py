@@ -57,42 +57,6 @@ def list_words_to_dic_words(list_words):
 
 
 
-def list_words_to_dic_letters(list_words):
-
-    dic_letters = {}
-
-    for word in list_words:
-
-        for letter in word:
-
-            if letter in dic_letters:
-
-                dic_letters[letter] += 1
-
-            else:
-
-                dic_letters[letter] = 1
-
-    return dic_letters
-
-
-
-
-def print_dic_words(dic_words):
-
-
-
-    list_sorted_keys = dic_words.keys()
-
-    list_sorted_keys.sort()
-
-    print " "*13 + "Word" + " "*13 + "Count" + " "* 5
-
-    for word in list_sorted_keys:
-
-        print "%20s     |    %5s"  %(word, dic_words[word] )
-
-
 
 def find_palindromes(dic_words):
 
@@ -115,21 +79,3 @@ def find_palindromes(dic_words):
             dic_palindromes[key] = 1
 
     return dic_palindromes
-
-
-
-#if __name__ == "__main__":
-
-list_lines = file_to_list_strings("PridePrej.txt")
-
-list_words = list_strings_to_list_words(list_lines)
-
-dic_words = list_words_to_dic_words(list_words)
-
-dic_letters = list_words_to_dic_letters(list_words)
-
-dic_palindromes = find_palindromes(dic_words)
-
-dic_palindromes
-
-# print_dic_words(dic_words)
