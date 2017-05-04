@@ -18,7 +18,7 @@ prompt_user.pack()
 user_file_name = tkinter.Entry(mywindow)
 user_file_name.pack()
 
-
+# this function goes through the dictionary of palindromes created from the text file and
 def display_palindromes(dic_palindromes):
 
     list_keys = dic_palindromes.keys()
@@ -55,6 +55,7 @@ def display_all_words(dic_words):
     scrollbar = tkinter.Scrollbar(all_words_window)
     scrollbar.pack(side = "right", fill = tkinter.Y)
 
+    #When the widget view is modified, the widget notifies the scrollbar by calling the set method.
     listbox = tkinter.Listbox(all_words_window, borderwidth = 0, yscrollcommand = scrollbar.set)
 
     for key in list_keys:
@@ -63,7 +64,10 @@ def display_all_words(dic_words):
         y = "%s   : %s "  %(key, value)
         listbox.insert(tkinter.END, y)
 
+    # the listbox appears to the left, and expands along both the x and y axis.
     listbox.pack(side ="left" , fill = tkinter.BOTH)
+
+    # when the user manipulates the scrollbar, the wdiget's yview method is called, along wi th the appropratie arguments
     scrollbar.config(command = listbox.yview)
 
     all_words_window.mainloop()
@@ -101,6 +105,9 @@ def word_search(user_word_entry, dic_words, actual_file):
 # defining the variable "actual file" outside the funtion assign_file.
 actual_file = ""
 
+# the function assign_file takes the user input as the name of the file, and performs functions on it, creating new variables in the process.
+# the function also creates a new window titled 'Functions for text files', which contains the widgets that give the user access
+# to the 3 functions (display_palindromes, word_search, display_all_words)
 def assign_file():
 
     actual_file = user_file_name.get()
@@ -112,8 +119,6 @@ def assign_file():
 
     dic_words = list_words_to_dic_words(list_words)
 
-    dic_letters = list_words_to_dic_letters(list_words)
-
     dic_palindromes = find_palindromes(dic_words)
 
 
@@ -121,20 +126,24 @@ def assign_file():
     new_window.title("Functions for text files")
     new_window.geometry("300x300")
 
-
+    # creating a button that lets the user access the display_palindromes function and its output
+    # Note: using a lambda, otherwise just command = display_palindromes(dic_palindromes) just calls the function immediately
+    # instead of allowing the arguments to be passed to the function once the button in clicked.
     palindrome_button = tkinter.Button( new_window, text ="Palindromes", command = lambda: display_palindromes(dic_palindromes) )
-    # Note, using a lambda otherwise just command = display_palindromes(dic_palindromes) just calls the function immediately
     palindrome_button.pack(pady = 10)
 
+    # creating a button which allows the user access to the display_all _words funtion and its output.
     display_all_words_button = tkinter.Button( new_window, text = "Display all words", command = lambda: display_all_words(dic_words) )
     display_all_words_button.pack(pady=10)
 
     prompt_user = tkinter.Label(new_window, text= "Enter word to search for: ")
     prompt_user.pack()
 
+    # creating an entry bar so that the user can enter what word to search for, which is then passed on to the word_search function.
     user_word_entry = tkinter.Entry(new_window)
     user_word_entry.pack()
 
+    # creatin a button which allows the user to access the word_search function and its output
     word_search_button = tkinter.Button (new_window, text = "Search", command = lambda: word_search(user_word_entry, dic_words, actual_file) )
     word_search_button.pack()
 
