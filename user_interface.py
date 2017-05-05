@@ -6,7 +6,7 @@ This is the file that anyone exploring this project should run.
 import Tkinter as tkinter
 from Textfile_functions import *
 
-# creating a new window, where the user can enter the name of the file on which the functions will be performed
+#creating a new window, where the user can enter the name of the file on which the functions will be performed
 mywindow = tkinter.Tk()
 mywindow.title("Welcome")
 mywindow.geometry("400x400")
@@ -44,6 +44,7 @@ def display_palindromes(dic_palindromes):
 
     palindrome_window.mainloop()
 
+
 # this function goes through the dictionary of words dic_words (created from the text file through the function list_words_to_dic_words),
 # creates a window to display all thewords in the text file and the number of times they appear, and displays the ouput using the listbox widget
 def display_all_words(dic_words):
@@ -75,8 +76,10 @@ def display_all_words(dic_words):
 
     all_words_window.mainloop()
 
+
 # defining the variable "current word" outside the function word_search
 current_word = ""
+
 
 # this function goes through the dictionary of words dic_words (created from the text file through the function list_words_to_dic_words),
 # and creates a window to display how many times a word appears in the text file. The word to search for is suggested by the user via
@@ -109,8 +112,10 @@ def word_search(user_word_entry, dic_words, actual_file):
          word_search_results.pack()
 
 
+
 # defining the variable "actual file" outside the funtion assign_file.
 actual_file = ""
+
 
 # the function assign_file takes the user input as the name of the file, and performs functions on it, creating new variables in the process.
 # the function also creates a new window titled 'Functions for text files', which contains the widgets that give the user access
@@ -140,14 +145,14 @@ def assign_file():
     palindrome_button = tkinter.Button( new_window, text ="Palindromes", command = lambda: display_palindromes(dic_palindromes) )
     palindrome_button.pack(pady = 10)
 
-    # creating a button which allows the user access to the display_all _words funtion and its output.
+    # creating a button which lets the user access the display_all _words funtion and its output.
     display_all_words_button = tkinter.Button( new_window, text = "Display all words", command = lambda: display_all_words(dic_words) )
     display_all_words_button.pack(pady=10)
 
     prompt_user = tkinter.Label(new_window, text= "Enter word to search for: ")
     prompt_user.pack()
 
-    # creating an entry bar so that the user can enter what word to search for, which is then passed on to the word_search function.
+    # creating an entry bar so that the user can enter what word to search for, which is later passed on as an argument to the word_search function.
     user_word_entry = tkinter.Entry(new_window)
     user_word_entry.pack()
 
