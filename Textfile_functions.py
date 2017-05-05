@@ -1,4 +1,5 @@
-def file_to_list_strings(FileName):
+# converts the text file into a list of strings, where line in the text file is a string in the list.
+def file_to_list_lines(FileName):
 
     list_lines = []
 
@@ -12,14 +13,12 @@ def file_to_list_strings(FileName):
 
         return list_lines
 
-
-def list_strings_to_list_words(list_strings):
+# each line in the list is broken down into the words that are present in it. All non-alphabet characters are
+def list_lines_to_list_words(list_lines):
 
     string_words = ''
 
     alpha = 'abcdefghijklmnopqrstuvwxyz'
-
-
 
     for line in list_strings:
 
@@ -57,7 +56,6 @@ def list_words_to_dic_words(list_words):
 
 
 
-
 def find_palindromes(dic_words):
 
     dic_palindromes = {}
@@ -68,11 +66,9 @@ def find_palindromes(dic_words):
     for key in list_keys:
         string = ''
 
-
         for letter in key:
 
             string = letter + string
-
 
         if string == key and len(string) > 2:
 
