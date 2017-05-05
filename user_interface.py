@@ -6,7 +6,7 @@ This is the file that anyone exploring this project should run.
 import Tkinter as tkinter
 from Textfile_functions import *
 
-#creating a new window, where the user can enter the name of the file on which the function will be performed
+# creating a new window, where the user can enter the name of the file on which the functions will be performed
 mywindow = tkinter.Tk()
 mywindow.title("Welcome")
 mywindow.geometry("400x400")
@@ -18,7 +18,8 @@ prompt_user.pack()
 user_file_name = tkinter.Entry(mywindow)
 user_file_name.pack()
 
-# this function goes through the dictionary of palindromes created from the text file and
+# this function goes through the dictionary of palindromes dic_palindromes (created from the text file through the function find_palindromes),
+# creates a new window to display the output, and displays the output using the widget listbox.
 def display_palindromes(dic_palindromes):
 
     list_keys = dic_palindromes.keys()
@@ -28,7 +29,7 @@ def display_palindromes(dic_palindromes):
     palindrome_window.title("Palindromes")
     palindrome_window.geometry("300x300")
 
-    #putting a scrollbar on the right side, making it fill up the y-axis
+    # putting a scrollbar on the right side, making it fill up the y-axis
     scrollbar = tkinter.Scrollbar(palindrome_window)
     scrollbar.pack(side = "right", fill = tkinter.Y)
 
@@ -43,6 +44,8 @@ def display_palindromes(dic_palindromes):
 
     palindrome_window.mainloop()
 
+# this function goes through the dictionary of words dic_words (created from the text file through the function list_words_to_dic_words),
+# creates a window to display all thewords in the text file and the number of times they appear, and displays the ouput using the listbox widget
 def display_all_words(dic_words):
 
     list_keys = dic_words.keys()
@@ -75,6 +78,10 @@ def display_all_words(dic_words):
 # defining the variable "current word" outside the function word_search
 current_word = ""
 
+# this function goes through the dictionary of words dic_words (created from the text file through the function list_words_to_dic_words),
+# and creates a window to display how many times a word appears in the text file. The word to search for is suggested by the user via
+# the entry widget. The output is displayed using the label widget.
+
 def word_search(user_word_entry, dic_words, actual_file):
 
     current_word = user_word_entry.get()
@@ -85,8 +92,8 @@ def word_search(user_word_entry, dic_words, actual_file):
     word_search_window.title("Word search results")
     word_search_window.geometry("300x300")
 
-    # if the word inputted by the user (represented by the variable "key") is in the dictionary of words,
-    # we find how many times it appears (represented the variable "count")
+    # if the word enterred by the user (represented by the variable "key") is in the dictionary of words,
+    # we find how many times it appears (represented the variable "count").
     if key in dic_words:
          count = str(dic_words[key])
          search_results =  "The word %s appears in the textfile %s a total of %s times"  %(key, actual_file, count)
@@ -110,12 +117,13 @@ actual_file = ""
 # to the 3 functions (display_palindromes, word_search, display_all_words)
 def assign_file():
 
+    # the file on which the functions are to be perforemd are recevied via user input
     actual_file = user_file_name.get()
 
     # the following functions are performed on on the textfile specified by the user:
-    list_lines = file_to_list_strings(actual_file)
+    list_lines = file_to_list_lines(actual_file)
 
-    list_words = list_strings_to_list_words(list_lines)
+    list_words = list_lines_to_list_words(list_lines)
 
     dic_words = list_words_to_dic_words(list_words)
 
@@ -126,8 +134,8 @@ def assign_file():
     new_window.title("Functions for text files")
     new_window.geometry("300x300")
 
-    # creating a button that lets the user access the display_palindromes function and its output
-    # Note: using a lambda, otherwise just command = display_palindromes(dic_palindromes) just calls the function immediately
+    # creating a button that lets the user access the display_palindromes function and its output.
+    # note: using a lambda, otherwise just command = display_palindromes(dic_palindromes) just calls the function immediately
     # instead of allowing the arguments to be passed to the function once the button in clicked.
     palindrome_button = tkinter.Button( new_window, text ="Palindromes", command = lambda: display_palindromes(dic_palindromes) )
     palindrome_button.pack(pady = 10)
@@ -143,7 +151,7 @@ def assign_file():
     user_word_entry = tkinter.Entry(new_window)
     user_word_entry.pack()
 
-    # creatin a button which allows the user to access the word_search function and its output
+    # creating a button which allows the user to access the word_search function and its output
     word_search_button = tkinter.Button (new_window, text = "Search", command = lambda: word_search(user_word_entry, dic_words, actual_file) )
     word_search_button.pack()
 
