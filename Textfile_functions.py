@@ -20,7 +20,7 @@ def list_lines_to_list_words(list_lines):
 
     alpha = 'abcdefghijklmnopqrstuvwxyz'
 
-    for line in list_strings:
+    for line in list_lines:
 
         line.lower()
 
