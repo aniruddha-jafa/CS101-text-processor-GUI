@@ -1,4 +1,5 @@
 # CS101Project_AniruddhaJafa
+Spring 2017, 2nd semester
 
 1. Description of the project
 
