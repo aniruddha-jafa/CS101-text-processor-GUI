@@ -1,6 +1,6 @@
 # CS101 Project - A simple GUI text-file processor
 
-Spring 2017, 1st year. My fist ever programming project (!) – I'd started learning to code about 2-3 months before this. 
+Spring 2017. My fist ever programming project – I'd started learning to code about 2-3 months before this :flushed:
 
 1. Description
 
